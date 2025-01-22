@@ -1,0 +1,42 @@
+name: Update Badge
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Badge number (integer)"
+        required: true
+        type: number
+      label:
+        description: "New label for the badge"
+        required: true
+        type: string
+      status:
+        description: "New status for the badge"
+        required: true
+        type: string
+      color:
+        description: "Badge color (green or red only)"
+        required: true
+        type: string
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate color input
+        run: |
+          if [[ "${{ github.event.inputs.color }}" != "green" && "${{ github.event.inputs.color }}" != "red" ]]; then
+            echo "Error: Invalid color. Only 'green' or 'red' are allowed."
+            exit 1
+          fi
+
+      - name: Update badge
+        uses: RubbaBoy/BYOB@v1.3.0
+        with:
+          NAME: "artemis-test${{ github.event.inputs.name }}"
+          LABEL: "${{ github.event.inputs.label }}"
+          STATUS: "${{ github.event.inputs.status }}"
+          COLOR: "${{ github.event.inputs.color }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
