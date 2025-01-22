@@ -7,10 +7,6 @@ on:
         description: "Badge number (integer)"
         required: true
         type: number
-      label:
-        description: "New label for the badge"
-        required: true
-        type: string
       status:
         description: "New status for the badge"
         required: true
