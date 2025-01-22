@@ -36,7 +36,7 @@ jobs:
         uses: RubbaBoy/BYOB@v1.3.0
         with:
           NAME: "artemis-test${{ github.event.inputs.name }}"
-          LABEL: "${{ github.event.inputs.label }}"
+          LABEL:  "artemis-test${{ github.event.inputs.name }}.artemis.cit.tum.de"
           STATUS: "${{ github.event.inputs.status }}"
           COLOR: "${{ github.event.inputs.color }}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
